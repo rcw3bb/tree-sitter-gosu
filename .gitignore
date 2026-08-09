@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables
+.env
+
+# Log files
+*.log
+
+# Coverage reports
+.coverage
+htmlcov/
+.tox/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# pytest cache
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+
+# Distribution
+*.whl
+*.tar.gz
