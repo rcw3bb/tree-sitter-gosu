@@ -1,0 +1,171 @@
+================================================================================
+Package and uses declarations
+================================================================================
+
+package xyz.ronella.gosu.sample
+
+uses java.util.List
+uses java.util.*
+
+class Foo {
+}
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (package_declaration (qualified_name (identifier) (identifier) (identifier) (identifier)))
+  (uses_declaration (identifier) (identifier) (identifier) (identifier))
+  (uses_declaration (identifier) (identifier) (identifier))
+  (modifiers)
+  (class_declaration (identifier) body: (class_body)))
+
+================================================================================
+Class with fields, functions, constructor
+================================================================================
+
+class Person {
+  var _name: String
+  var _age: int = 0
+
+  construct(name: String) {
+    _name = name
+  }
+
+  function greet(): String {
+    return "hi"
+  }
+}
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (modifiers)
+  (class_declaration
+    (identifier)
+    body: (class_body
+      (modifiers)
+      (field_declaration (identifier) type: (class_or_interface_type (identifier)))
+      (modifiers)
+      (field_declaration (identifier) type: (class_or_interface_type (identifier)) value: (number_literal))
+      (modifiers)
+      (constructor_declaration
+        parameters: (parameters (parameter (identifier) type: (class_or_interface_type (identifier))))
+        body: (statement_block
+          (assignment_expression left: (identifier) operator: (identifier) right: (identifier))))
+      (modifiers)
+      (function_declaration
+        (identifier)
+        parameters: (parameters)
+        return_type: (class_or_interface_type (identifier))
+        body: (statement_block
+          (return_statement value: (string_literal)))))))
+
+================================================================================
+Interface and enum declarations
+================================================================================
+
+interface Shape {
+  function area(): double
+}
+
+enum Color {
+  RED, GREEN, BLUE
+}
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (modifiers)
+  (interface_declaration
+    (identifier)
+    body: (interface_body
+      (modifiers)
+      (function_declaration (identifier) parameters: (parameters) return_type: (class_or_interface_type (identifier)))))
+  (modifiers)
+  (enum_declaration
+    (identifier)
+    body: (enum_body
+      (enum_constants
+        (enum_constant (identifier))
+        (enum_constant (identifier))
+        (enum_constant (identifier))))))
+
+================================================================================
+If, while, for statements
+================================================================================
+
+class Loops {
+  function run() {
+    if (true) {
+      var x = 1
+    } else {
+      var y = 2
+    }
+    while (false) {
+      break
+    }
+    for (var i in items) {
+      continue
+    }
+  }
+}
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (modifiers)
+  (class_declaration
+    (identifier)
+    body: (class_body
+      (modifiers)
+      (function_declaration
+        (identifier)
+        parameters: (parameters)
+        body: (statement_block
+          (if_statement
+            condition: (true)
+            consequence: (statement_block (local_variable_declaration (identifier) value: (number_literal)))
+            alternative: (statement_block (local_variable_declaration (identifier) value: (number_literal))))
+          (while_statement condition: (false) body: (statement_block (break_statement)))
+          (for_statement
+            (for_control (identifier) value: (identifier))
+            body: (statement_block (continue_statement))))))))
+
+================================================================================
+Expressions: binary, ternary, elvis, typeis, as
+================================================================================
+
+class Exprs {
+  function calc() {
+    var a = 1 + 2 * 3
+    var b = a > 0 ? a : -a
+    var c = a ?: 0
+    var d = a typeis String
+    var e = a as String
+  }
+}
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (modifiers)
+  (class_declaration
+    (identifier)
+    body: (class_body
+      (modifiers)
+      (function_declaration
+        (identifier)
+        parameters: (parameters)
+        body: (statement_block
+          (local_variable_declaration (identifier) value:
+            (binary_expression
+              left: (number_literal)
+              operator: (binary_expression left: (number_literal) operator: (number_literal))))
+          (local_variable_declaration (identifier) value:
+            (ternary_expression
+              condition: (binary_expression left: (identifier) operator: (number_literal))
+              consequence: (identifier)
+              alternative: (unary_expression operand: (identifier))))
+          (local_variable_declaration (identifier) value: (elvis_expression left: (identifier) right: (number_literal)))
+          (local_variable_declaration (identifier) value: (typeis_expression value: (identifier) type: (class_or_interface_type (identifier))))
+          (local_variable_declaration (identifier) value: (type_as_expression value: (identifier) type: (class_or_interface_type (identifier)))))))))

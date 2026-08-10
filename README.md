@@ -9,6 +9,9 @@ A Tree-sitter grammar that parses Gosu, a statically typed, JVM-based general-pu
 
 - Python `>=3.14`
 - Poetry `2.2`
+- Node.js (for `tree-sitter-cli`, used to regenerate the parser from `grammar.js`)
+- A C compiler (MSVC on Windows, GCC/Clang on Linux/macOS) to build the native extension and run
+  `tree-sitter test`/`tree-sitter parse`
 
 ## Installation
 
@@ -19,7 +22,12 @@ poetry install
 ## Usage
 
 ```python
+import tree_sitter
 import tree_sitter_gosu
+
+language = tree_sitter.Language(tree_sitter_gosu.language())
+parser = tree_sitter.Parser(language)
+tree = parser.parse(b"class Foo { function bar(): int { return 1 } }")
 ```
 
 ## Development
@@ -40,6 +48,14 @@ poetry run pytest --cov=tree_sitter_gosu tests --cov-report html
 
 ```bash
 poetry run black tree_sitter_gosu; poetry run pylint tree_sitter_gosu
+```
+
+### Regenerate the parser from grammar.js
+
+```bash
+npm install
+npx tree-sitter generate
+npx tree-sitter test
 ```
 
 ## Configuration

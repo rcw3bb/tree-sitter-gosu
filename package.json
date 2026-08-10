@@ -1,0 +1,39 @@
+{
+  "name": "tree-sitter-gosu",
+  "version": "1.0.0",
+  "description": "Gosu grammar for tree-sitter",
+  "repository": "https://github.com/rcw3bb/tree-sitter-gosu",
+  "license": "MIT",
+  "author": {
+    "name": "Ron Webb",
+    "email": "ron@ronella.xyz"
+  },
+  "main": "grammar.js",
+  "keywords": [
+    "incremental",
+    "parsing",
+    "tree-sitter",
+    "gosu"
+  ],
+  "files": [
+    "grammar.js",
+    "tree-sitter.json",
+    "queries/*",
+    "src/**"
+  ],
+  "devDependencies": {
+    "tree-sitter-cli": "^0.24.7"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.21.1"
+  },
+  "peerDependenciesMeta": {
+    "tree-sitter": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "test": "tree-sitter test"
+  }
+}
