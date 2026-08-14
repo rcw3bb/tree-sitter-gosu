@@ -15,7 +15,7 @@ script = "build.py"
 
 [project]
 name = "tree-sitter-gosu"
-version = "0.1.0"
+version = "0.1.1"
 description = "A Tree-sitter grammar that parses Gosu, a statically typed, JVM-based general-purpose programming language."
 readme = "README.md"
 license = {file = "LICENSE"}
