@@ -15,7 +15,7 @@ from logenrich import setup_logger
 
 from ._binding import language  # pylint: disable=import-error,no-name-in-module
 
-__version__ = "1.0.0"
+__version__ = "0.1.0"
 
 _bootstrapper = EnvDirBootstrap(
     env_var="TREE_SITTER_GOSU_CONFIG_DIR",

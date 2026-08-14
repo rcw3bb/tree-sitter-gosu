@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-gosu",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Gosu grammar for tree-sitter",
   "repository": "https://github.com/rcw3bb/tree-sitter-gosu",
   "license": "MIT",

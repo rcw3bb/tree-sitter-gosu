@@ -1,7 +1,7 @@
 # tree-sitter-gosu
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
 
 A Tree-sitter grammar that parses Gosu, a statically typed, JVM-based general-purpose programming language.
 
