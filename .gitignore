@@ -40,6 +40,7 @@ htmlcov/
 # Distribution
 *.whl
 *.tar.gz
+*.so
 
 # Node / tree-sitter-cli
 node_modules/

@@ -130,6 +130,7 @@ module.exports = grammar({
         $.interface_declaration,
         $.enum_declaration,
         $.enhancement_declaration,
+        $.annotation_declaration,
       ),
     ),
 
@@ -166,6 +167,33 @@ module.exports = grammar({
     super_interfaces: $ => seq('implements', $.type_list),
 
     type_list: $ => sep1($._type, ','),
+
+    annotation_declaration: $ => seq(
+      'annotation',
+      field('name', $.identifier),
+      field('body', $.annotation_body),
+    ),
+
+    annotation_body: $ => seq(
+      '{',
+      repeat($._annotation_member_declaration),
+      '}',
+    ),
+
+    _annotation_member_declaration: $ => seq(
+      field('modifiers', optional($.modifiers)),
+      $.annotation_method_declaration,
+      optional(';'),
+    ),
+
+    // annotation method: function name() : Type  or  function name() : Type = default
+    annotation_method_declaration: $ => seq(
+      'function',
+      field('name', $.identifier),
+      field('parameters', $.parameters),
+      optional(seq(':', field('return_type', $._type))),
+      optional(seq('=', field('default', $._expression))),
+    ),
 
     interface_declaration: $ => seq(
       'interface',
@@ -210,6 +238,7 @@ module.exports = grammar({
       $.class_declaration,
       $.interface_declaration,
       $.enum_declaration,
+      $.annotation_declaration,
     ),
 
     interface_body: $ => seq('{', repeat($._interface_member_declaration), '}'),

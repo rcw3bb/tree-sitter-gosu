@@ -6,6 +6,7 @@
   "interface"
   "enum"
   "enhancement"
+  "annotation"
   "extends"
   "implements"
   "represents"
