@@ -139,7 +139,7 @@ module.exports = grammar({
     modifiers: $ => repeat1(choice(
       $.annotation,
       'private', 'internal', 'protected', 'public',
-      'static', 'abstract', 'override', 'final', 'transient',
+      'static', 'abstract', 'override', 'final', 'transient', 'reified',
     )),
 
     annotation: $ => seq(

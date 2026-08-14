@@ -2,6 +2,10 @@
 
 ## 0.2.0 - 2026-08-14
 
+### Added
+
+- Support for `reified` modifier for type parameters in generic declarations (as per Gosu language specification).
+
 ### Changed
 
 - Removed `EnvDirBootstrap` usage since tree-sitter-gosu is a library, not a standalone application.
