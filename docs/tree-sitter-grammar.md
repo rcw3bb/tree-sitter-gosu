@@ -52,6 +52,19 @@ Context for maintaining `grammar.js`, the tree-sitter toolchain, and the Poetry-
 - Don't keep a parallel `setup.py` next to `build.py` — poetry-core never invokes `setup.py`, so it becomes
   dead/duplicated code.
 
+## Version pinning gotcha (learned 8/14)
+
+- The committed `src/parser.c` can drift ahead of the pinned `tree-sitter-cli` devDependency in `package.json` if a
+  contributor generated it with a newer CLI than what's pinned. Symptom: `npx tree-sitter test`/`parse` fails with
+  `Incompatible language version N. Expected minimum X, maximum Y` — the CLI's native binary refuses to load a
+  parser built for a newer ABI.
+- Fix is to bump the pinned `tree-sitter-cli` version (not to regenerate `src/` with the older CLI, which silently
+  rewrites the parser to the lower ABI and can surface previously-undetected grammar/corpus mismatches).
+- In this dev container, `npm install`/`npm approve-scripts --allow-scripts-pending` can silently fail to fetch the
+  `tree-sitter-cli` native binary (ENOENT on first run) even though outbound network access to GitHub releases
+  works — retrying `npm approve-scripts tree-sitter-cli` (or re-running `npm install`) after the first failure
+  resolved it.
+
 ## Session learnings
 
 (Notes will be added here as the AI learns from each task.)

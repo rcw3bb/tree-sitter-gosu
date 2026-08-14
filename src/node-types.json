@@ -2339,7 +2339,7 @@
     "root": true,
     "fields": {
       "modifiers": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {

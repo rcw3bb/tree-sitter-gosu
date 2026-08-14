@@ -13,11 +13,22 @@ class Foo {
 --------------------------------------------------------------------------------
 
 (compilation_unit
-  (package_declaration (qualified_name (identifier) (identifier) (identifier) (identifier)))
-  (uses_declaration (identifier) (identifier) (identifier) (identifier))
-  (uses_declaration (identifier) (identifier) (identifier))
-  (modifiers)
-  (class_declaration (identifier) body: (class_body)))
+  (package_declaration
+    name: (qualified_name
+      (identifier)
+      (identifier)
+      (identifier)
+      (identifier)))
+  (uses_declaration
+    name: (identifier)
+    name: (identifier)
+    name: (identifier))
+  (uses_declaration
+    name: (identifier)
+    name: (identifier))
+  (class_declaration
+    name: (identifier)
+    body: (class_body)))
 
 ================================================================================
 Class with fields, functions, constructor
@@ -39,26 +50,37 @@ class Person {
 --------------------------------------------------------------------------------
 
 (compilation_unit
-  (modifiers)
   (class_declaration
-    (identifier)
+    name: (identifier)
     body: (class_body
-      (modifiers)
-      (field_declaration (identifier) type: (class_or_interface_type (identifier)))
-      (modifiers)
-      (field_declaration (identifier) type: (class_or_interface_type (identifier)) value: (number_literal))
-      (modifiers)
+      (field_declaration
+        name: (identifier)
+        type: (class_or_interface_type
+          name: (identifier)))
+      (field_declaration
+        name: (identifier)
+        type: (class_or_interface_type
+          name: (identifier))
+        value: (number_literal))
       (constructor_declaration
-        parameters: (parameters (parameter (identifier) type: (class_or_interface_type (identifier))))
+        parameters: (parameters
+          (parameter
+            name: (identifier)
+            type: (class_or_interface_type
+              name: (identifier))))
         body: (statement_block
-          (assignment_expression left: (identifier) operator: (identifier) right: (identifier))))
-      (modifiers)
+          (expression_statement
+            (assignment_expression
+              left: (identifier)
+              right: (identifier)))))
       (function_declaration
-        (identifier)
+        name: (identifier)
         parameters: (parameters)
-        return_type: (class_or_interface_type (identifier))
+        return_type: (class_or_interface_type
+          name: (identifier))
         body: (statement_block
-          (return_statement value: (string_literal)))))))
+          (return_statement
+            value: (string_literal)))))))
 
 ================================================================================
 Interface and enum declarations
@@ -75,20 +97,24 @@ enum Color {
 --------------------------------------------------------------------------------
 
 (compilation_unit
-  (modifiers)
   (interface_declaration
-    (identifier)
+    name: (identifier)
     body: (interface_body
-      (modifiers)
-      (function_declaration (identifier) parameters: (parameters) return_type: (class_or_interface_type (identifier)))))
-  (modifiers)
+      (function_declaration
+        name: (identifier)
+        parameters: (parameters)
+        return_type: (class_or_interface_type
+          name: (identifier)))))
   (enum_declaration
-    (identifier)
+    name: (identifier)
     body: (enum_body
       (enum_constants
-        (enum_constant (identifier))
-        (enum_constant (identifier))
-        (enum_constant (identifier))))))
+        (enum_constant
+          name: (identifier))
+        (enum_constant
+          name: (identifier))
+        (enum_constant
+          name: (identifier))))))
 
 ================================================================================
 If, while, for statements
@@ -113,23 +139,33 @@ class Loops {
 --------------------------------------------------------------------------------
 
 (compilation_unit
-  (modifiers)
   (class_declaration
-    (identifier)
+    name: (identifier)
     body: (class_body
-      (modifiers)
       (function_declaration
-        (identifier)
+        name: (identifier)
         parameters: (parameters)
         body: (statement_block
           (if_statement
             condition: (true)
-            consequence: (statement_block (local_variable_declaration (identifier) value: (number_literal)))
-            alternative: (statement_block (local_variable_declaration (identifier) value: (number_literal))))
-          (while_statement condition: (false) body: (statement_block (break_statement)))
+            consequence: (statement_block
+              (local_variable_declaration
+                name: (identifier)
+                value: (number_literal)))
+            alternative: (statement_block
+              (local_variable_declaration
+                name: (identifier)
+                value: (number_literal))))
+          (while_statement
+            condition: (false)
+            body: (statement_block
+              (break_statement)))
           (for_statement
-            (for_control (identifier) value: (identifier))
-            body: (statement_block (continue_statement))))))))
+            (for_control
+              name: (identifier)
+              value: (identifier))
+            body: (statement_block
+              (continue_statement))))))))
 
 ================================================================================
 Expressions: binary, ternary, elvis, typeis, as
@@ -148,24 +184,43 @@ class Exprs {
 --------------------------------------------------------------------------------
 
 (compilation_unit
-  (modifiers)
   (class_declaration
-    (identifier)
+    name: (identifier)
     body: (class_body
-      (modifiers)
       (function_declaration
-        (identifier)
+        name: (identifier)
         parameters: (parameters)
         body: (statement_block
-          (local_variable_declaration (identifier) value:
-            (binary_expression
+          (local_variable_declaration
+            name: (identifier)
+            value: (binary_expression
               left: (number_literal)
-              operator: (binary_expression left: (number_literal) operator: (number_literal))))
-          (local_variable_declaration (identifier) value:
-            (ternary_expression
-              condition: (binary_expression left: (identifier) operator: (number_literal))
+              right: (binary_expression
+                left: (number_literal)
+                right: (number_literal))))
+          (local_variable_declaration
+            name: (identifier)
+            value: (ternary_expression
+              condition: (binary_expression
+                left: (identifier)
+                right: (number_literal))
               consequence: (identifier)
-              alternative: (unary_expression operand: (identifier))))
-          (local_variable_declaration (identifier) value: (elvis_expression left: (identifier) right: (number_literal)))
-          (local_variable_declaration (identifier) value: (typeis_expression value: (identifier) type: (class_or_interface_type (identifier))))
-          (local_variable_declaration (identifier) value: (type_as_expression value: (identifier) type: (class_or_interface_type (identifier)))))))))
+              alternative: (unary_expression
+                operand: (identifier))))
+          (local_variable_declaration
+            name: (identifier)
+            value: (elvis_expression
+              left: (identifier)
+              right: (number_literal)))
+          (local_variable_declaration
+            name: (identifier)
+            value: (typeis_expression
+              value: (identifier)
+              type: (class_or_interface_type
+                name: (identifier))))
+          (local_variable_declaration
+            name: (identifier)
+            value: (type_as_expression
+              value: (identifier)
+              type: (class_or_interface_type
+                name: (identifier)))))))))

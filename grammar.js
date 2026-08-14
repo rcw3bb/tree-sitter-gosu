@@ -109,7 +109,7 @@ module.exports = grammar({
     compilation_unit: $ => seq(
       optional($.package_declaration),
       repeat($.uses_declaration),
-      optional($._top_level_declaration),
+      repeat($._top_level_declaration),
     ),
 
     package_declaration: $ => seq('package', field('name', $.qualified_name), optional(';')),

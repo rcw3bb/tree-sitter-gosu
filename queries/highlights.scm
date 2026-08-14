@@ -55,16 +55,13 @@
   "switch"
   "case"
   "default"
-  "break"
-  "continue"
   "assert"
   "using"
 ] @keyword.control
 
-[
-  "this"
-  "super"
-] @variable.builtin
+[(break_statement) (continue_statement)] @keyword.control
+
+[(this) (super)] @variable.builtin
 
 [(true) (false) (null_literal)] @constant.builtin
 
