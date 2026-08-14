@@ -15,7 +15,7 @@ script = "build.py"
 
 [project]
 name = "tree-sitter-gosu"
-version = "0.1.2"
+version = "0.2.0"
 description = "A Tree-sitter grammar that parses Gosu, a statically typed, JVM-based general-purpose programming language."
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -25,7 +25,6 @@ authors = [
 requires-python = ">=3.14"
 dependencies = [
     "logenrich (>=1.0.1,<2.0.0)",
-    "env-dir-bootstrap (>=1.0.0,<2.0.0)",
     "tree-sitter (>=0.26.0,<0.27.0)"
 ]
 

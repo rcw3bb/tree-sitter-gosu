@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.0 - 2026-08-14
+
+### Added
+
+- Support for `reified` modifier for type parameters in generic declarations (as per Gosu language specification).
+
+### Changed
+
+- Removed `EnvDirBootstrap` usage since tree-sitter-gosu is a library, not a standalone application.
+- Simplified logger initialization by removing the `conf_dir` parameter from `setup_logger()`.
+- Removed `env-dir-bootstrap` dependency from project dependencies.
+
 ## 0.1.2 - 2026-08-14
 
 ### Changed

@@ -10,24 +10,13 @@ tree_sitter_gosu package.
 
 from importlib.resources import files as _files
 
-from env_dir_bootstrap import EnvDirBootstrap
 from logenrich import setup_logger
 
 from ._binding import language  # pylint: disable=import-error,no-name-in-module
 
-__version__ = "0.1.2"
+__version__ = "0.2.0"
 
-_bootstrapper = EnvDirBootstrap(
-    env_var="TREE_SITTER_GOSU_CONFIG_DIR",
-    resources=["logging.ini"],
-    package="tree_sitter_gosu",
-)
-
-_bootstrapper.setup()
-
-CONF_DIR = str(_bootstrapper.get_dir())
-
-setup_logger("tree_sitter_gosu", conf_dir=CONF_DIR)
+setup_logger("tree_sitter_gosu")
 
 
 def _get_query(name, file):

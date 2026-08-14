@@ -236,6 +236,10 @@
           {
             "type": "STRING",
             "value": "transient"
+          },
+          {
+            "type": "STRING",
+            "value": "reified"
           }
         ]
       }
