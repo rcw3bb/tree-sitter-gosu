@@ -53,3 +53,8 @@ This repo is a Python library (`tree-sitter-gosu`) that provides a Tree-sitter g
 - 3+ related notes on a topic → create a new `docs/` context file, move notes there, update the Tree. Keep this file under 100 lines.
 
 See `docs/tree-sitter-grammar.md` for tree-sitter grammar/build-tooling learnings (created 8/10, 3+ related notes).
+
+## Session learnings
+
+- Tree-sitter corpus tests on Windows require `cl.exe` even when the CLI is installed (learned 8/22/2026).
+- The devcontainer installs the package-pinned `tree-sitter-cli` globally so its command is available in terminals (learned 8/23/2026).
