@@ -28,6 +28,7 @@
   "abstract"
   "override"
   "transient"
+  "reified"
   "private"
   "internal"
   "protected"
