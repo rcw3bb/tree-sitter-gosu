@@ -8,7 +8,7 @@
             "version": "lts"
         }
     },
-    "postCreateCommand": "poetry install && npm install",
+    "postCreateCommand": "poetry install && npm install && npm install --global tree-sitter-cli@0.26.12 && tree-sitter build --wasm",
     "customizations": {
         "vscode": {
             "extensions": [
