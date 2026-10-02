@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1 - 2026-10-02
+
+### Added
+
+- Support feature literals without an explicit object.
+- Add syntax highlighting for the `reified` keyword.
+
 ## 0.2.0 - 2026-08-14
 
 ### Added
