@@ -75,7 +75,21 @@ jobs:
       - name: Run tests
         run: poetry run pytest --cov=tree_sitter_gosu tests --cov-report term
 
-      - name: Build package
+      - name: Build sdist (Linux)
+        if: runner.os == 'Linux'
+        run: poetry build --format sdist
+
+      - name: Build manylinux wheel (Linux)
+        if: runner.os == 'Linux'
+        uses: pypa/cibuildwheel@v2
+        with:
+          output-dir: dist
+        env:
+          CIBW_BUILD: cp314-manylinux_x86_64
+          CIBW_BUILD_FRONTEND: build
+
+      - name: Build package (Windows/macOS)
+        if: runner.os != 'Linux'
         run: poetry build
 
       - name: Upload build artifacts
