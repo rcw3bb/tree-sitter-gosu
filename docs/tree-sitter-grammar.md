@@ -40,17 +40,24 @@ Context for maintaining `grammar.js`, the tree-sitter toolchain, and the Poetry-
 ## Poetry + native extension build (learned 8/10)
 
 - `[tool.poetry] build = "build.py"` is invalid; the correct key is the nested table `[tool.poetry.build]` with
-  `script = "build.py"`.
+  `script = "_poetry_build.py"`.
 - poetry-core does NOT support the old `def build(setup_kwargs): ...` convention (mutating a setuptools kwargs
-  dict) — it silently no-ops. `build.py` must compile the extension itself in-place using
+  dict) — it silently no-ops. The build script must compile the extension itself in-place using
   `setuptools.command.build_ext.build_ext(dist)` with `cmd.inplace = 1; cmd.ensure_finalized(); cmd.run()` (NOT
   `dist.parse_command_line()` + `dist.run_command(...)`, which fails with "no commands supplied").
 - `build-system.requires` must list `setuptools` explicitly — Poetry builds in a bare temp venv with nothing
   preinstalled.
 - `[tool.poetry] include` needs explicit `{path=..., format="wheel"}` entries for the compiled `_binding*.pyd`/
   `_binding*.so` outputs, and `{path=..., format="sdist"}` for the C sources so sdist can rebuild from source.
-- Don't keep a parallel `setup.py` next to `build.py` — poetry-core never invokes `setup.py`, so it becomes
+- Don't keep a parallel `setup.py` next to the build script — poetry-core never invokes `setup.py`, so it becomes
   dead/duplicated code.
+- The Poetry build script must NEVER be named `build.py` (learned 10/2/2026): `python -m module` prepends the
+  current working directory to `sys.path`, so running `python -m build` from the repo root resolves `import build`
+  to the local `build.py` file instead of the installed PyPA `build` package. The script then runs its own
+  `if __name__ == "__main__"` block (just compiling the extension in-place) and exits 0 with **no output and no
+  wheel written** — `cibuildwheel`'s `CIBW_BUILD_FRONTEND: build` frontend reports this as "Build failed because
+  the build frontend completed successfully but did not produce a wheel" with no useful diagnostic. Renamed to
+  `_poetry_build.py` to fix.
 
 ## Version pinning gotcha (learned 8/14)
 
