@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      force_publish:
+        description: "Bypass the version-bump check and publish anyway"
+        type: boolean
+        default: false
 
 jobs:
   check-version:
@@ -19,11 +24,13 @@ jobs:
 
       - name: Check for version bump
         id: check
+        env:
+          FORCE_PUBLISH: ${{ github.event.inputs.force_publish }}
         run: |
           version=$(grep -m1 '^version = ' pyproject.toml | cut -d '"' -f2)
           old_version=$(git show HEAD^:pyproject.toml 2>/dev/null | grep -m1 '^version = ' | cut -d '"' -f2 || true)
           echo "version=$version" >> "$GITHUB_OUTPUT"
-          if [ "$version" != "$old_version" ]; then
+          if [ "$FORCE_PUBLISH" = "true" ] || [ "$version" != "$old_version" ]; then
             echo "should_publish=true" >> "$GITHUB_OUTPUT"
           else
             echo "should_publish=false" >> "$GITHUB_OUTPUT"
