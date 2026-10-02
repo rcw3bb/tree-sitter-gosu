@@ -582,7 +582,7 @@ module.exports = grammar({
     )),
 
     feature_literal: $ => prec(PREC.MEMBER, seq(
-      field('object', $._expression),
+      optional(field('object', $._expression)),
       '#',
       field('name', choice($.identifier, 'construct')),
     )),

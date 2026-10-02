@@ -56,5 +56,6 @@ See `docs/tree-sitter-grammar.md` for tree-sitter grammar/build-tooling learning
 
 ## Session learnings
 
+- Feature literals may omit the object before `#` (learned 10/3/2026).
 - Tree-sitter corpus tests on Windows require `cl.exe` even when the CLI is installed (learned 8/22/2026).
 - The devcontainer installs the package-pinned `tree-sitter-cli` globally so its command is available in terminals (learned 8/23/2026).

@@ -224,3 +224,34 @@ class Exprs {
               value: (identifier)
               type: (class_or_interface_type
                 name: (identifier)))))))))
+
+================================================================================
+Feature literals with optional object
+================================================================================
+
+class Features {
+  function literals() {
+    var implicit = #name
+    var explicit = target#name
+  }
+}
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (class_declaration
+    name: (identifier)
+    body: (class_body
+      (function_declaration
+        name: (identifier)
+        parameters: (parameters)
+        body: (statement_block
+          (local_variable_declaration
+            name: (identifier)
+            value: (feature_literal
+              name: (identifier)))
+          (local_variable_declaration
+            name: (identifier)
+            value: (feature_literal
+              object: (identifier)
+              name: (identifier))))))))
