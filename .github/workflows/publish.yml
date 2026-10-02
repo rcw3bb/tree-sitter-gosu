@@ -88,7 +88,7 @@ jobs:
 
       - name: Build manylinux wheel (Linux)
         if: runner.os == 'Linux'
-        uses: pypa/cibuildwheel@v2
+        uses: pypa/cibuildwheel@v4.2.1
         with:
           output-dir: dist
         env:
