@@ -99,6 +99,7 @@ jobs:
           CIBW_BUILD: cp314-manylinux_x86_64
           CIBW_BUILD_FRONTEND: "build; args: --no-isolation"
           CIBW_BEFORE_BUILD: "pip install -U 'poetry-core>=2.0.0,<3.0.0' 'setuptools>=84.0.0'"
+          CIBW_BUILD_VERBOSITY: "1"
 
       - name: Build package (Windows/macOS)
         if: runner.os != 'Linux'
