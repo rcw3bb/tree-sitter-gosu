@@ -80,7 +80,8 @@ class Person {
           name: (identifier))
         body: (statement_block
           (return_statement
-            value: (string_literal)))))))
+            value: (string_literal
+              (string_content))))))))
 
 ================================================================================
 Interface and enum declarations

@@ -14,7 +14,7 @@ from logenrich import setup_logger
 
 from ._binding import language  # pylint: disable=import-error,no-name-in-module
 
-__version__ = "0.2.1"
+__version__ = "0.3.0"
 
 setup_logger("tree_sitter_gosu")
 

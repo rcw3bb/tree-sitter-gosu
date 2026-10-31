@@ -68,6 +68,10 @@
 
 (number_literal) @number
 (string_literal) @string
+(escape_sequence) @string.escape
+(interpolation
+  "${" @punctuation.special
+  "}" @punctuation.special)
 
 (line_comment) @comment
 (block_comment) @comment
