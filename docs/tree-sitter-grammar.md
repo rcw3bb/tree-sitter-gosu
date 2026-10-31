@@ -74,4 +74,7 @@ Context for maintaining `grammar.js`, the tree-sitter toolchain, and the Poetry-
 
 ## Session learnings
 
-(Notes will be added here as the AI learns from each task.)
+- String interpolation (learned 10/31/2026): double-quoted `string_literal` is a `choice` of `seq('"', repeat(string_content | escape_sequence | interpolation), '"')`
+  built only from `token.immediate` fragments (no external scanner), so extras/whitespace never leak into string text.
+  `string_content` is `/(?:[^"\\$]|\$[^{"\\$])+/` or a lone `$`, so `$name` stays text; adjacent `string_content`
+  nodes can occur around a lone `$`. Single-quoted strings stay one opaque token. `${` is matched by `token.immediate('${')`.

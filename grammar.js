@@ -689,10 +689,25 @@ module.exports = grammar({
       ),
     )),
 
-    string_literal: _ => token(choice(
-      seq('"', repeat(choice(ESCAPE_SEQUENCE, /[^"\\]/)), '"'),
-      seq("'", repeat(choice(ESCAPE_SEQUENCE, /[^'\\]/)), "'"),
+    // Double-quoted strings are decomposed so `${...}` interpolations expose real
+    // expression nodes; single-quoted strings remain a single opaque token.
+    string_literal: $ => choice(
+      seq(
+        '"',
+        repeat(choice($.string_content, $.escape_sequence, $.interpolation)),
+        token.immediate('"'),
+      ),
+      token(seq("'", repeat(choice(ESCAPE_SEQUENCE, /[^'\\]/)), "'")),
+    ),
+
+    string_content: _ => token.immediate(choice(
+      prec(1, /(?:[^"\\$]|\$[^{"\\$])+/),
+      '$',
     )),
+
+    escape_sequence: _ => token.immediate(ESCAPE_SEQUENCE),
+
+    interpolation: $ => seq(token.immediate('${'), $._expression, '}'),
 
     // ── Types ────────────────────────────────────────────────────
 

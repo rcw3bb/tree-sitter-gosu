@@ -13,14 +13,14 @@ This repo is a Python library (`tree-sitter-gosu`) that provides a Tree-sitter g
 - `grammar.js` — the Gosu tree-sitter grammar (source of truth for parsing rules)
 - `package.json`, `tree-sitter.json` — npm/tree-sitter-cli metadata for `tree-sitter generate`/`test`
 - `src/` — generated parser output (`parser.c`, `node-types.json`, `grammar.json`); regenerate, don't hand-edit
-- `test/corpus/` — tree-sitter native test corpus (`npx tree-sitter test`)
+- `test/corpus/` — tree-sitter native test corpus (`npx tree-sitter test`); `declarations.txt`, `strings.txt` (interpolation)
 - `queries/highlights.scm` — editor syntax-highlighting query
 - `bindings/python/binding.c` — C source exposing `tree_sitter_gosu._binding.language()` to Python
 - `_poetry_build.py` — Poetry build script hook; compiles the native extension in-place (see `[tool.poetry.build]`); must NOT be named `build.py` (shadows the PyPA `build` package when `python -m build` runs from the repo root)
 - `tree_sitter_gosu/` — main package source
 - `tree_sitter_gosu/__init__.py` — package entry point; bootstraps env dir/logging and exposes `language()`/`HIGHLIGHTS_QUERY`
 - `tree_sitter_gosu/logging.ini` — logging configuration (included in distribution)
-- `tests/` — pytest tests mirroring the package structure
+- `tests/` — pytest tests mirroring the package structure (`test_binding.py`, `test_string_interpolation.py`)
 - `pyproject.toml` — project metadata, dependencies, and build config (Poetry)
 - `CHANGELOG.md` — version history
 - `README.md` — project overview and usage

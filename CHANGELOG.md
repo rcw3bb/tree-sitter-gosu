@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.3.0 - 2026-10-31
+
+### Added
+
+- Decompose `${...}` interpolations in double-quoted strings into real `interpolation` nodes whose children are regular expressions (e.g. `identifier`), instead of one opaque `string_literal` token.
+- New `string_content` and `escape_sequence` nodes inside double-quoted `string_literal`.
+- Highlight captures for `escape_sequence` and the `${`/`}` interpolation delimiters.
+
+### Changed
+
+- Double-quoted `string_literal` nodes now have children; single-quoted strings remain a single token and are never interpolated.
+- Renamed the Poetry build script to `_poetry_build.py` to avoid shadowing the PyPA `build` package.
+
 ## 0.2.1 - 2026-10-02
 
 ### Added

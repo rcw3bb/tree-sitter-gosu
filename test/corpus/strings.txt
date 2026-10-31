@@ -1,0 +1,146 @@
+================================================================================
+Plain and empty double-quoted strings
+================================================================================
+
+class A {
+  var a = "plain"
+  var b = ""
+}
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (class_declaration
+    name: (identifier)
+    body: (class_body
+      (field_declaration
+        name: (identifier)
+        value: (string_literal
+          (string_content)))
+      (field_declaration
+        name: (identifier)
+        value: (string_literal)))))
+
+================================================================================
+Single interpolation
+================================================================================
+
+class A {
+  var a = "Hello, ${_name}!"
+}
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (class_declaration
+    name: (identifier)
+    body: (class_body
+      (field_declaration
+        name: (identifier)
+        value: (string_literal
+          (string_content)
+          (interpolation
+            (identifier))
+          (string_content))))))
+
+================================================================================
+Multiple interpolations with member access and calls
+================================================================================
+
+class A {
+  var a = "${_first} ${p.name} ${f(1)}"
+}
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (class_declaration
+    name: (identifier)
+    body: (class_body
+      (field_declaration
+        name: (identifier)
+        value: (string_literal
+          (interpolation
+            (identifier))
+          (string_content)
+          (interpolation
+            (member_access
+              object: (identifier)
+              name: (identifier)))
+          (string_content)
+          (interpolation
+            (call_expression
+              function: (identifier)
+              arguments: (argument_list
+                (number_literal)))))))))
+
+================================================================================
+Nested string inside interpolation
+================================================================================
+
+class A {
+  var a = "x ${ f("y ${z}") }"
+}
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (class_declaration
+    name: (identifier)
+    body: (class_body
+      (field_declaration
+        name: (identifier)
+        value: (string_literal
+          (string_content)
+          (interpolation
+            (call_expression
+              function: (identifier)
+              arguments: (argument_list
+                (string_literal
+                  (string_content)
+                  (interpolation
+                    (identifier)))))))))))
+
+================================================================================
+Escape sequences and lone dollar signs
+================================================================================
+
+class A {
+  var a = "q\" \$x \n $y $"
+}
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (class_declaration
+    name: (identifier)
+    body: (class_body
+      (field_declaration
+        name: (identifier)
+        value: (string_literal
+          (string_content)
+          (escape_sequence)
+          (string_content)
+          (escape_sequence)
+          (string_content)
+          (escape_sequence)
+          (string_content)
+          (string_content))))))
+
+================================================================================
+Single-quoted strings are not interpolated
+================================================================================
+
+class A {
+  var a = 'no ${interp}'
+}
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (class_declaration
+    name: (identifier)
+    body: (class_body
+      (field_declaration
+        name: (identifier)
+        value: (string_literal)))))
